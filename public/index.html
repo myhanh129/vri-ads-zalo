@@ -1,89 +1,155 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<!-- saved from url=(0054)https://vinhomes-royal-island.web.app/ -->
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Vinhomes Royal Island</title>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+    <script async="" src="https://s.zzcdn.me/ztr/ztracker.js?id=7276907522395541504"></script>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/11.4.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/11.4.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+<body>
+    <div class="container">
+        <div class="hero-section">
+            <img src="121.jpg" alt="Vinhomes Royal Island" class="hero-image">
+        </div>
+        <div class="avatar-section">
+            <img src="12.jpg" alt="Vinhomes Royal Island" class="hero-image">
+        </div>
+        <h2>Vinhomes Royal Island Hải Phòng</h2>
+        <p><strong>Tổng chiết khấu lên đến 23% hôm nay!</strong></p>
+        <p id="shortText">
+            Vốn ban đầu chỉ từ 3 tỷ, trong 3 năm không cần bỏ thêm. Ngân hàng hỗ trợ vay vốn tới 70% giá trị căn 
+            và được ân hạn gốc, lãi 0% lên đến 36 tháng (tùy từng phân khu). Nhân dịp giáp ...
+            <span id="fullText" style="display: none;">
+                Tết Ất Tỵ 2025, chủ đầu tư Vinhomes đã ra bộ chính sách siêu ưu đãi để tri ân tới những ai đang quan tâm dự án.
+                Tổng chiết khấu tối đa khi mua các căn ở quỹ đặc biệt lên đến 23% cho khách hàng thanh toán.
+                Với chiết khấu không tưởng được như vậy, các chuyên gia trong thị trường bất động sản đánh giá đây là cơ hội hiếm có để 
+                khách hàng có thể sở hữu nhà trong Vinhomes Royal Island.
+            </span>
+            <a id="toggleButton" class="view-more" onclick="toggleText()">xem thêm</a>
+        </p>
+        
+        <h3 onclick="toggleContent(this)">Thông tin tổng quan</h3>
+<div class="content-box">
+    <div class="slideshow">
+        <img src="image1.jpg" class="slide active">
+        <img src="image2.jpg" class="slide">
+        <img src="image3.jpg" class="slide">        
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+    <p class="content"><strong>Dự án được tích hợp tiện ích "All in one" đầu tiên Hải Phòng</strong>
+        <br>Là 1 siêu dự án có quy mô diện tích 877 ha với tổng vốn đầu tư hơn 2,4 tỷ USD. Vinhomes Royal Island được kiến tạo trở thành "Đặc khu mới" giành cho giới tinh hoa. Dự án gồm 11 phân khu với nhiều loại hình sản phẩm: biệt thự, nhà liền kề, shophouse, dinh thự.
+        <br> 💫 Dự án ngoài việc sở hữu vị trí đắc địa bộ ba kết nối Không - Thủy - Bộ.
+        <br> 💫 Thì Vinhomes Vũ Yên còn quy tụ hệ thống tiện ích đẳng cấp hàng đầu khu vực:
+        <br> 💫 Sân golf 36 hố rộng 160 ha
+        <br> 💫 Bến du thuyền hơn 300 chỗ đỗ
+        <br> 💫 VinWonder và Safari rộng 50 ha
+        <br> 💫 Vinschool, Vincom Mega Mall, ...
+        <br> 💫 Học viện cưỡi ngựa hoàng gia
+    </p>
+</div>
+      
+        <h3 onclick="toggleContent(this)">Thông tin chi tiết</h3>
+        <div class="content-box">
+            <div class="slideshow">
+            <img src="image1.jpg" class="slide active">
+            <img src="image2.jpg" class="slide">
+            <img src="image3.jpg" class="slide">
+        </div>
+        <p class="content">
+            Dự án Vinhomes Vũ Yên (Vinhomes Royal Island) tại Hải Phòng đã và đang tổ chức nhiều sự kiện đáng chú ý. 
+            <br><strong>Vào ngày 22/02/2025,</strong> dự án đã khai trương kỹ thuật Bến du thuyền và tổ chức Dạ tiệc Du thuyền Hoàng Gia.
+            <br><strong>Tháng 4/2025:</strong> Khai trương Trung tâm Thương mại Vincom Mega Mall Vũ Yên. 
+            <br><strong>Tháng 5/2025:</strong> Tổ chức giải chạy tại Thành phố Đảo Hoàng Gia, với cơ hội trúng thưởng xe VF9.  
+            <br><strong>Tháng 6/2025:</strong> Khai trương nhà mẫu dự án. 
+            <br><strong>Tháng 8/2025:</strong> Thông xe cầu Hoàng Gia, kết nối trực tiếp với trung tâm thành phố Hải Phòng.
+            <br><strong>Tháng 10/2025:</strong> Tổ chức sự kiện "Family Day" nhằm tri ân khách hàng.
+            <br>...
+        </p>
+    </div>
+    
+        <h3 onclick="toggleContent(this)">Bảng giá</h3>
+                <div class="content-box">
+<p class="content">
+            <table>
+                <tr>
+                    <th>Loại hình</th>
+                    <th>Diện tích (m²)</th>
+                    <th>Khoảng giá (tỷ VND)</th>
+                </tr>
+                <tr>
+                    <td>Shophouse</td>
+                    <td>90 - 160</td>
+                    <td>12 - 20</td>
+                </tr>
+                <tr>
+                    <td>Nhà liền kề</td>
+                    <td>70 - 100</td>
+                    <td>7 - 14</td>
+                </tr>
+                <tr>
+                    <td>Biệt thự đơn lập</td>
+                    <td>200 - 400</td>
+                    <td>18 - 38</td>
+                </tr>
+                <tr>
+                    <td>Biệt thự song lập</td>
+                    <td>120 - 226</td>
+                    <td>15 - 25</td>
+                </tr>
+            </table>
+        </p>        </div>    
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        <h3>Điền thông tin của bạn để tải CSBH 3/2025</h3>
+        <form>
+            <input type="text" id="name" placeholder="Họ và Tên">
+            <input type="tel" id="phone" placeholder="Số điện thoại">
+            <input type="text" id="address" placeholder="Địa chỉ">
+        </form>        
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
+        <h3>Bạn đã từng đến thăm quan dự án Vinhomes Royal Island chưa?</h3>
+        <div class="radio-group">
+            <label>
+                <input type="radio" name="visit" value="Đã đến"> Đã đến
+            </label>
+            <label>
+                <input type="radio" name="visit" value="Chưa đến"> Chưa đến
+            </label>
+        </div>
+        
+        <h3>Bạn đang quan tâm sản phẩm nào tại dự án?</h3>
+        <div class="radio-group">
+            <label>
+                <input type="radio" name="product" value="Biệt thự đơn lập"> Biệt thự đơn lập
+            </label>
+            <label>
+                <input type="radio" name="product" value="Biệt thự song lập"> Biệt thự song lập
+            </label>
+            <label>
+                <input type="radio" name="product" value="Nhà liền kề"> Nhà liền kề
+            </label>
+            <label>
+                <input type="radio" name="product" value="Shophouse"> Shophouse
+            </label>
+        </div>   
+
+        <div class="button-group">
+        <button onclick="sendOTP()">Đồng ý gửi</button>
+        <button onclick="rejectOTP()" style="background-color: red; color: white; border: none; padding: 8px 12px; cursor: pointer;">Từ chối</button>
+        
+        <div id="otpSection" style="display: none;">
+            <input type="text" id="otpCode" placeholder="Nhập mã OTP">
+            <button onclick="verifyOTP()">Xác thực</button>
+        </div>
+        
+        <div id="recaptcha-container"></div>
+        </div>
+
+    <script src="script.js"></script>
+</body>
 </html>

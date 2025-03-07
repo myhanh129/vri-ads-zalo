@@ -1,0 +1,257 @@
+/* Thiết lập chung */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Khung chứa */
+.container, .table-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(56, 55, 55, 0.1);
+    overflow: hidden;
+    max-width: 500px;
+    padding: 20px;
+    color: #666;
+}
+
+/* Bảng */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 20px 0;
+    text-align: left;
+    color: #666;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    color: #666;
+}
+
+th {
+    background-color: #f4f4f4;
+    color: #666;
+}
+
+/* Hình ảnh */
+.image-container img {
+    width: 100%;
+    border-radius: 12px 12px 0 0;
+}
+
+/* Nội dung */
+.content {
+    text-align: left; /* Căn mép trái */
+    position: relative;
+}
+
+.content br {
+    display: block;
+    content: "";
+    margin-bottom: 8px; /* Khoảng cách giữa các dòng */
+}
+
+.content strong::before {
+    content: "• "; /* Thêm dấu chấm tròn */
+    color: black; /* Màu dấu chấm */
+    font-weight: bold;
+    margin-right: 5px; /* Khoảng cách giữa dấu chấm và chữ */
+}
+h2
+ h3 {
+    color: #2d3e50;
+    font-size: 16px;
+    font-weight: bold;
+    
+}
+
+p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Logo */
+.logo {
+    width: 80px;
+    margin: -40px auto 10px;
+    background: white;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Input & Button */
+input, button {
+    width: 100%;
+    padding: 6px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+input {
+    border-bottom: 2px solid #ccc;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background: transparent;
+    color: #2d3e50;
+}
+
+input::placeholder {
+    color: #a0a0a0;
+    font-size: 14px;
+}
+
+.button-group {
+    display: flex;
+    gap: 12px; /* Khoảng cách giữa các nút */
+}
+
+.button-group button {
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.button-group button:first-child {
+    background-color: #007bff;
+    color: white;
+}
+
+.button-group button:last-child {
+    background-color: red;
+    color: white;
+}
+
+/* Ẩn phần nhập OTP */
+.otp-section, .content-box {
+    display: none;
+    margin-bottom: 20px;
+}
+
+/* Nhóm radio */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Tạo khoảng cách giữa các dòng */
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Khoảng cách giữa nút radio và chữ */
+    font-weight: 400;
+    cursor: pointer;
+    line-height: 1.5; /* Căn chỉnh chiều cao chữ */
+}
+
+.radio-group input[type="radio"] {
+    width: 16px;  
+    height: 16px;
+    margin: 0;
+    vertical-align: middle; /* Căn giữa theo chiều dọc */
+    position: relative;
+    top: -1px; /* Điều chỉnh độ cao nếu cần */
+}
+
+
+/* Slideshow */
+.slideshow {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    overflow: hidden;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+
+.slideshow img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slideshow img.active {
+    opacity: 1;
+}
+
+/* Xem thêm */
+.view-more {
+    color: #007bff;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.view-more:hover {
+    text-decoration: underline;
+}
+
+/* Hero section */
+.hero-section {
+    position: relative; /* Giữ ảnh nền đúng vị trí */
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    display: block;
+}
+
+.avatar-section {
+    position: absolute;
+    left: 50%;
+    bottom: -50px; /* Điều chỉnh vị trí avatar */
+    transform: translateX(-50%);
+}
+
+.avatar-image {
+    width: 100px; /* Điều chỉnh kích thước avatar */
+    height: 100px;
+    border-radius: 50%; /* Hình tròn */
+    border: 5px solid #fff; /* Viền trắng nhẹ */
+    object-fit: cover;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    .container {
+        max-width: 500px;
+        padding: 25px;
+    }
+    
+    input, button {
+        font-size: 18px;
+    }
+}
