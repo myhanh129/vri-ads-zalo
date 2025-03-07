@@ -70,26 +70,22 @@ function toggleContent(event) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    let slides = document.querySelectorAll(".slideshow .slide");
+    let slides = document.querySelectorAll(".slide");
     let currentIndex = 0;
-
+    
     function showSlide(index) {
         slides.forEach((slide, i) => {
-            slide.style.display = (i === index) ? "block" : "none";
+            slide.style.opacity = i === index ? "1" : "0"; // Dùng opacity thay vì display
         });
     }
 
     function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
+        currentIndex = (currentIndex + 1) % slides.length; // Lặp vô hạn
         showSlide(currentIndex);
     }
 
-    if (slides.length > 0) {
-        showSlide(currentIndex);
-        setInterval(nextSlide, 3000); // Chuyển ảnh mỗi 3 giây
-    } else {
-        console.error("Không tìm thấy ảnh trong slideshow.");
-    }
+    showSlide(currentIndex); // Hiển thị ảnh đầu tiên
+    setInterval(nextSlide, 3000); // Chạy mỗi 3 giây
 });
 
 
