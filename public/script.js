@@ -1,27 +1,15 @@
-// Cấu hình Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyCXeHaUP9pM3cMwQoa48r_E8eJl84nw8VA",
-    authDomain: "vinhomes-royal-island.firebaseapp.com",
-    projectId: "vinhomes-royal-island",
-    storageBucket: "vinhomes-royal-island.firebasestorage.app",
-    messagingSenderId: "600333799617",
-    appId: "1:600333799617:web:8eeb0d1e306a382f1d4440",
-    measurementId: "G-FY15SSGDGG"
-  };
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
 
 // Kích hoạt reCAPTCHA
 window.onload = function () {
     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-        'size': 'normal',
+        'size': 'invisible', // Hoặc 'normal' nếu muốn hiển thị reCAPTCHA
         'callback': function (response) {
-            console.log("reCAPTCHA verified");
+            console.log("reCAPTCHA xác thực thành công");
         }
     });
 };
 
-let confirmationResult;
+let confirmationResult = null;
 
 // Gửi OTP
 function sendOTP() {
@@ -31,7 +19,7 @@ function sendOTP() {
     auth.signInWithPhoneNumber(phoneNumber, appVerifier)
         .then(function (result) {
             confirmationResult = result;
-            document.querySelector(".otp-section").style.display = "block";
+            document.getElementById("otpSection").style.display = "block";
             document.getElementById("message").innerText = "Mã OTP đã gửi!";
         })
         .catch(function (error) {
@@ -43,95 +31,78 @@ function sendOTP() {
 function verifyOTP() {
     let otpCode = document.getElementById("otpCode").value;
 
+    if (!confirmationResult) {
+        document.getElementById("message").innerText = "Vui lòng yêu cầu mã OTP trước.";
+        return;
+    }
+
     confirmationResult.confirm(otpCode)
         .then(function (result) {
             document.getElementById("message").innerText = "Xác thực thành công!";
-            console.log(result.user);
+            window.location.href = "thankyou.html"; // Chuyển hướng đến trang cảm ơn
         })
         .catch(function (error) {
             document.getElementById("message").innerText = "Mã OTP sai!";
         });
 }
-window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-    'size': 'invisible', // Hoặc 'normal' nếu muốn hiển thị reCAPTCHA
-    'callback': function(response) {
-        console.log("reCAPTCHA xác thực thành công");
+
+// Từ chối OTP
+function rejectOTP() {
+    window.location.href = "index.html"; // Quay về trang gốc
+}
+
+// Tự động điền số điện thoại từ URL
+document.addEventListener("DOMContentLoaded", function () {
+    let phone = new URLSearchParams(window.location.search).get("phone");
+    if (phone) {
+        let phoneInput = document.querySelector("input[name='phone']");
+        if (phoneInput) {
+            phoneInput.value = phone;
+        }
+        fetch("https://script.google.com/macros/s/1H9vQlwpKf9PuIACi2yBV-o32Y62SZMyrDzkCp7meaNKJcijSE5X_UAXT/exec?phone=" + phone);
     }
 });
 
-function toggleContent(element) {
-    var contentBox = element.nextElementSibling; // Lấy phần tử tiếp theo (nội dung)
+// Ẩn/hiện nội dung
+function toggleContent(event) {
+    var contentBox = event.nextElementSibling;
+    contentBox.style.display = (contentBox.style.display === "none" || contentBox.style.display === "") ? "block" : "none";
+}
 
-    // Kiểm tra trạng thái hiển thị và thay đổi
-    if (contentBox.style.display === "none" || contentBox.style.display === "") {
-        contentBox.style.display = "block"; // Hiện nội dung
+document.addEventListener("DOMContentLoaded", function () {
+    let slides = document.querySelectorAll(".slideshow .slide");
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.style.display = (i === index) ? "block" : "none";
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+    }
+
+    if (slides.length > 0) {
+        showSlide(currentIndex);
+        setInterval(nextSlide, 3000); // Chuyển ảnh mỗi 3 giây
     } else {
-        contentBox.style.display = "none"; // Ẩn nội dung
+        console.error("Không tìm thấy ảnh trong slideshow.");
     }
-}
-
-// Hàm tự động đổi ảnh mỗi 3 giây
-function startSlideshow(slideshow) {
-    let slides = slideshow.querySelectorAll(".slide");
-    let index = 0;
-
-    setInterval(() => {
-        slides[index].classList.remove("active");
-        index = (index + 1) % slides.length;
-        slides[index].classList.add("active");
-    }, 3000);
-}
-
-// Khi trang tải xong, kích hoạt slideshow cho từng phần
-document.addEventListener("DOMContentLoaded", () => {
-    let slideshows = document.querySelectorAll(".slideshow");
-    slideshows.forEach(startSlideshow);
 });
+
+
+// Ẩn/hiện nội dung "xem thêm"
 function toggleText() {
     var fullText = document.getElementById("fullText");
     var button = document.getElementById("toggleButton");
 
     if (fullText.style.display === "none") {
-        fullText.style.display = "inline"; // Hiện nội dung đầy đủ
-        button.textContent = "thu gọn"; // Đổi chữ thành "thu gọn"
+        fullText.style.display = "inline";
+        button.textContent = "Thu gọn";
     } else {
-        fullText.style.display = "none"; // Ẩn nội dung mở rộng
-        button.textContent = "xem thêm"; // Đổi lại thành "xem thêm"
+        fullText.style.display = "none";
+        button.textContent = "Xem thêm";
     }
 }
-
-//JavaScript để tự động điền số điện thoại vào form
-  function getQueryParam(param) {
-      let urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-      let phone = getQueryParam("phone");
-      if (phone) {
-          let phoneInput = document.querySelector("input[name='phone']"); // Chỉnh sửa nếu cần
-          if (phoneInput) {
-              phoneInput.value = phone;
-          }
-      }
-  });
-
-
-  function doGet(e) {
-    var sheet = SpreadsheetApp.openById("1ghswD-V6P0lkD-ydWvT4kgQtu933EzbmWY7PNE6rY2k").getSheetByName("Sheet1");
-    var phone = e.parameter.phone;
-  
-    if (phone) {
-      sheet.appendRow([new Date(), phone]);
-    }
-  
-    return ContentService.createTextOutput("Success");
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-      let phone = getQueryParam("phone");
-      if (phone) {
-          fetch("https://script.google.com/macros/s/1H9vQlwpKf9PuIACi2yBV-o32Y62SZMyrDzkCp7meaNKJcijSE5X_UAXT/exec?phone=" + phone);
-      }
-  });
-

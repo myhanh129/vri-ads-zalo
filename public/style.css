@@ -69,7 +69,12 @@ th {
     font-weight: bold;
     margin-right: 5px; /* Khoảng cách giữa dấu chấm và chữ */
 }
-h2
+h2 {
+    margin-top: -20px; /* Giảm khoảng cách giữa avatar và dòng chữ */
+       color: #2d3e50;
+    font-size: 20px;
+    font-weight: bold;}
+
  h3 {
     color: #2d3e50;
     font-size: 16px;
@@ -174,24 +179,20 @@ input::placeholder {
 /* Slideshow */
 .slideshow {
     position: relative;
-    width: 100%;
-    max-width: 500px;
-    height: 300px;
-    overflow: hidden;
-    margin: 10px auto;
-    border-radius: 10px;
+    max-width: 100%;
 }
 
-.slideshow img {
+.slide {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+    display: none; /* Ẩn tất cả ảnh */
 }
 
-.slideshow img.active {
-    opacity: 1;
+.slideshow .slide {
+    display: none;
+    width: 100%;
+}
+.slideshow .slide:first-child {
+    display: block;
 }
 
 /* Xem thêm */
@@ -206,31 +207,32 @@ input::placeholder {
     text-decoration: underline;
 }
 
-/* Hero section */
-.hero-section {
-    position: relative; /* Giữ ảnh nền đúng vị trí */
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-}
-
 .hero-image {
     width: 100%;
     display: block;
 }
 
+.hero-section {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    padding-bottom: 80px; /* Đẩy nội dung xuống để tránh chồng lấn */
+}
+
 .avatar-section {
     position: absolute;
     left: 50%;
-    bottom: -50px; /* Điều chỉnh vị trí avatar */
+    bottom: 30px;
     transform: translateX(-50%);
+    z-index: 10; /* Đảm bảo avatar nằm trên cùng */
 }
 
 .avatar-image {
     width: 100px; /* Điều chỉnh kích thước avatar */
     height: 100px;
     border-radius: 50%; /* Hình tròn */
-    border: 5px solid #fff; /* Viền trắng nhẹ */
+    border: 2px solid #fff; /* Viền trắng nhẹ */
     object-fit: cover;
 }
 

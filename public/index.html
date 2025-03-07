@@ -1,26 +1,40 @@
 <!DOCTYPE html>
-<!-- saved from url=(0054)https://vinhomes-royal-island.web.app/ -->
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
+<!-- saved from url=(0046)https://vinhomes-royal-island.firebaseapp.com/ -->
+<html lang="vi"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Vinhomes Royal Island</title>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
-    <script async="" src="https://s.zzcdn.me/ztr/ztracker.js?id=7276907522395541504"></script>
+    <script src="firebase-app.js"></script>
+    <script src="firebase-auth.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCXeHaUP9pM3cMwQoa48r_E8eJl84nw8VA",
+            authDomain: "vinhomes-royal-island.firebaseapp.com",
+            projectId: "vinhomes-royal-island",
+            storageBucket: "vinhomes-royal-island.appspot.com",
+            messagingSenderId: "600333799617",
+            appId: "1:600333799617:web:8eeb0d1e306a382f1d4440",
+            measurementId: "G-FY15SSGDGG"
+        };
+        firebase.initializeApp(firebaseConfig);
+      </script>
+      <script src="script.js"></script>
+    <script async="" src="ztracker.js"></script>
     <link rel="stylesheet" href="style.css">
+    
     
 </head>
 
 <body>
     <div class="container">
-        <div class="hero-section">
+        <div class="hero-section"> 
             <img src="121.jpg" alt="Vinhomes Royal Island" class="hero-image">
-        </div>
-        <div class="avatar-section">
-            <img src="12.jpg" alt="Vinhomes Royal Island" class="hero-image">
-        </div>
+            
+            <div class="avatar-section">
+                <img src="12.jpg" alt="Vinhomes Royal Island" class="avatar-image">
+            </div>
+        </div>        
         <h2>Vinhomes Royal Island Hải Phòng</h2>
         <p><strong>Tổng chiết khấu lên đến 23% hôm nay!</strong></p>
         <p id="shortText">
@@ -36,11 +50,11 @@
         </p>
         
         <h3 onclick="toggleContent(this)">Thông tin tổng quan</h3>
-<div class="content-box">
+<div class="content-box" style="display: none;">
     <div class="slideshow">
-        <img src="image1.jpg" class="slide active">
-        <img src="image2.jpg" class="slide">
-        <img src="image3.jpg" class="slide">        
+        <img src="image1.jpg" class="slide active" style="display: block;">
+        <img src="image2.jpg" class="slide " style="display: none;">
+        <img src="image3.jpg" class="slide " style="display: none;">        
     </div>
     <p class="content"><strong>Dự án được tích hợp tiện ích "All in one" đầu tiên Hải Phòng</strong>
         <br>Là 1 siêu dự án có quy mô diện tích 877 ha với tổng vốn đầu tư hơn 2,4 tỷ USD. Vinhomes Royal Island được kiến tạo trở thành "Đặc khu mới" giành cho giới tinh hoa. Dự án gồm 11 phân khu với nhiều loại hình sản phẩm: biệt thự, nhà liền kề, shophouse, dinh thự.
@@ -55,11 +69,11 @@
 </div>
       
         <h3 onclick="toggleContent(this)">Thông tin chi tiết</h3>
-        <div class="content-box">
+        <div class="content-box" style="display: block;">
             <div class="slideshow">
-            <img src="image1.jpg" class="slide active">
-            <img src="image2.jpg" class="slide">
-            <img src="image3.jpg" class="slide">
+            <img src="image1.jpg" class="slide active" style="display: none;">
+            <img src="image2.jpg" class="slide" style="display: none;">
+            <img src="image3.jpg" class="slide" style="display: none;">
         </div>
         <p class="content">
             Dự án Vinhomes Vũ Yên (Vinhomes Royal Island) tại Hải Phòng đã và đang tổ chức nhiều sự kiện đáng chú ý. 
@@ -76,8 +90,8 @@
         <h3 onclick="toggleContent(this)">Bảng giá</h3>
                 <div class="content-box">
 <p class="content">
-            <table>
-                <tr>
+            </p><table>
+                <tbody><tr>
                     <th>Loại hình</th>
                     <th>Diện tích (m²)</th>
                     <th>Khoảng giá (tỷ VND)</th>
@@ -102,8 +116,8 @@
                     <td>120 - 226</td>
                     <td>15 - 25</td>
                 </tr>
-            </table>
-        </p>        </div>    
+            </tbody></table>
+        <p></p>        </div>    
 
         <h3>Điền thông tin của bạn để tải CSBH 3/2025</h3>
         <form>
@@ -139,17 +153,20 @@
         </div>   
 
         <div class="button-group">
-        <button onclick="sendOTP()">Đồng ý gửi</button>
-        <button onclick="rejectOTP()" style="background-color: red; color: white; border: none; padding: 8px 12px; cursor: pointer;">Từ chối</button>
-        
-        <div id="otpSection" style="display: none;">
-            <input type="text" id="otpCode" placeholder="Nhập mã OTP">
-            <button onclick="verifyOTP()">Xác thực</button>
+            <button onclick="sendOTP()">Đồng ý gửi</button>
+            <button onclick="rejectOTP()" style="background-color: red; color: white; border: none; padding: 8px 12px; cursor: pointer;">Từ chối</button>
+            
+            <div id="otpSection" style="display: none; margin-top: 10px;">
+                <input type="text" id="otpCode" placeholder="Nhập mã OTP">
+                <button onclick="verifyOTP()">Xác thực</button>
+            </div>
         </div>
         
         <div id="recaptcha-container"></div>
         </div>
 
-    <script src="script.js"></script>
+
+
+
 </body>
 </html>
